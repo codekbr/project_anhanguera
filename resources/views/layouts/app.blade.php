@@ -25,19 +25,26 @@
 <body>
     <div id="app">
 
-  
+        @auth
         <div class="ui pointing menu right">
-            <a href="{{route('home')}}" class="item popup" data-content="home">
+            <a href="{{route('home')}}" class="item popup" data-content="">
                 <img src="https://pbs.twimg.com/profile_images/1248592527705305088/R-_o1_GO.jpg" alt="" class="img-fluid" style="width:50px;">
             </a>
         
             <div class="right menu">
-                <a href="#" class="item popup"><i class="icon home large" data-content="Logotipo Empresa"></i></a>
-                <a href="#" class="item popup"><i class="icon users large" data-content="Usuários"></i></a>
-                <a href="#" class="item popup"><i class="icon sign-out large" data-content="Sair"></i></a>
+                <a href="#" class="item popup homeuser"><i class="icon home large" ></i></a>
+                <a href="#" class="item popup usuarios"><i class="icon users large" data-content="Usuários"></i></a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+               
+                <a onclick="document.getElementById('logout-form').submit();" class="item popup sair"><i class="icon sign-out large" data-content="Sair"></i></a>
+                
+               
             </div>
         
         </div>
+        @endauth
         {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -91,9 +98,12 @@
                 </div>
             </div>
         </nav> --}}
-        <main>
-            @yield('content')
-        </main>  
+        
+            <main>
+                @yield('content')
+            </main>  
+         
+       
     </div>
   
     <script src="{{asset('js/app.js')}}" ></script>
@@ -101,10 +111,25 @@
     <script>
         
         $( document ).ready(function() {
-            $(".popup").popup({
+            // $(".").popup({
+            //     position : 'top center',
+            // });
+            $('.homeuser')
+            .popup({
                 position : 'top center',
-            });
-            
+                content  : 'Home'
+            })
+            $('.usuarios')
+            .popup({
+                position : 'top center',
+                content  : 'Usuários'
+            })
+            $('.sair')
+            .popup({
+                position : 'top center',
+                content  : 'Sair'
+            })
+            ;
         });
        
         
