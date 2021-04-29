@@ -1,4 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/semantic-ui/js/semantic.min.js": "/semantic-ui/js/semantic.min.js",
+    "/semantic-ui/css/semantic.min.css": "/semantic-ui/css/semantic.min.css"
 }
