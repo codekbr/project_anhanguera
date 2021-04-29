@@ -15,9 +15,3 @@ mix.js('resources/js/app.js', 'public/js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css');
 
-/**
-    * Importar Semantic Ui JS AND CSS Copy;
-*/
-
-mix.copy('resources/semantic-ui/js/semantic.min.js', 'public/semantic-ui/js');
-mix.copy('resources/semantic-ui/css/semantic.min.css', 'public/semantic-ui/css');
