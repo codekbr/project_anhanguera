@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('group_id')->unique()->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -22,6 +23,11 @@ class CreateUsersTable extends Migration
             $table->string('ativo',1)->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('group_id')
+                ->references('id')
+                ->on('group_admins')
+                ->onDelete('cascade');
         });
     }
 

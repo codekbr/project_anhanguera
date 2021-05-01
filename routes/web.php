@@ -18,7 +18,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/usuario', [App\Http\Controllers\UsuarioController::class, 'index'])->name('usuario');
+Route::group(['middleware' => 'auth:web' ],function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+    Route::group(['users'], function(){
+        Route::get('/', [App\Http\Controllers\UsersController::class, 'index'])->name('users.index');
+        Route::put('/{id}/active-user', [App\Http\Controllers\UsersController::class, 'activeUser'])->name('users.active');
+    });
+    Route::get('/friends', [App\Http\Controllers\FriendsController::class, 'index'])->name('friends.index');
+});
