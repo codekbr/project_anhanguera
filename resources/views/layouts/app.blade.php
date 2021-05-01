@@ -37,6 +37,7 @@
                 <a href="{{route('home.index')}}" class="item popup homeuser"><i class="icon home large" ></i></a>
                 <a href="{{route('users.index')}}" class="item popup usuarios"><i class="icon key large" data-content="Usuários"></i></a>
                 <a href="{{route('friends.index')}}" class="item popup amigos"><i class="icon users large" data-content="Amigos"></i></a>
+                <a href="{{route('groups.index')}}" class="item popup grupos"><i class="icon group large" data-content="Grupos"></i></a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
@@ -45,7 +46,10 @@
                 
                
             </div>
-        
+           
+        </div>
+        <div style="text-align:right;margin-right:20px;margin-bottom:10px;">
+            Olá,<strong> {{Auth::user()->name}}</strong> você está logado.
         </div>
         @endauth
         {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -133,6 +137,11 @@
             .popup({
                 position : 'top center',
                 content  : 'Amigos'
+            })
+            $('.grupos')
+            .popup({
+                position : 'top center',
+                content  : 'Grupos'
             })
             $('.sair')
             .popup({
