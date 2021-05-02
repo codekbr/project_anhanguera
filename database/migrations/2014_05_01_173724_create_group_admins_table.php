@@ -16,7 +16,7 @@ class CreateGroupAdminsTable extends Migration
         Schema::create('group_admins', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('admin',1)->nullable();
+            $table->boolean('admin')->default('0');
             $table->timestamps();
         });
     }

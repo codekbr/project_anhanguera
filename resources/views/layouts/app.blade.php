@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{asset('alertify/css/alertify.min.css')}}">
     <link rel="stylesheet" href="{{asset('alertify/css/themes/semantic.min.css')}}">
     {{-- <link rel="stylesheet" href="{{asset('DataTable/datatables.min.css')}}"> --}}
+  
     @stack('styles')
     <style></style>
 </head>
@@ -37,7 +38,9 @@
         
             <div class="right menu">
                 <a href="{{route('home.index')}}" class="item popup homeuser"><i class="icon home large" ></i></a>
-                <a href="{{route('users.index')}}" class="item popup usuarios"><i class="icon key large" data-content="Usuários"></i></a>
+                @if (Auth::user()->group->admin == 1) 
+                    <a href="{{route('users.index')}}" class="item popup usuarios"><i class="icon key large" data-content="Usuários"></i></a>
+                @endif
                 <a href="{{route('friends.index')}}" class="item popup amigos"><i class="icon users large" data-content="Amigos"></i></a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
@@ -119,6 +122,7 @@
     <script src="{{asset('js/global.js')}}"></script>
     <script src="{{asset('alertify/alertify.min.js')}}"></script>
     {{-- <script src="{{asset('DataTable/datatables.min.js')}}"></script> --}}
+    
     
     <script>
         alertify.defaults.transition = "zoom";

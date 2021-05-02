@@ -122,7 +122,7 @@
                 <div id="refreshFieldVisibility">
                     <div class="fields">
                         <div class="sixteen wide field">
-                            <table class="ui table very compact celled selectable structured small orange">
+                            <table class="ui table very compact celled selectable structured small orange" id="tableVisibilities">
                                 <thead>
                                     <tr>
                                         <th>#ID</th>
@@ -144,7 +144,7 @@
                                                 </button>
                                             </td>
                                             <td class="center aligned collapsing">
-                                                <button type="button" onclick="deleteVisibility({{$visibility->id}},`<span style='color:red;'>{{$visibility->type}}</span>`);" class="ui button icon labeled red tiny">
+                                                <button type="button" onclick="deleteVisibility({{$visibility->id}},`<span style='color:red;'>{{$visibility->type}}</span>`,this);" class="ui button icon labeled red tiny">
                                                     Excluir  <i class="icon close"></i>
                                                 </button>
                                             
@@ -284,8 +284,9 @@
 @endsection
 
 @push('scripts')
-   
+
     <script>
+        
         // var table = $("#tableUsers").DataTable();
         $(document).ready(function(){
             $('.menu .item').tab();
@@ -356,7 +357,7 @@
             });
         }
 
-        function deleteVisibility(id,type)
+        function deleteVisibility(id,type,button)
         {
             alertify.confirm("Excluir",`Deseja Realmente Excluir essa Visilibilidade?: ${type}?`,
             function(){
@@ -382,7 +383,8 @@
                                 $(".ui.error.message").addClass("hidden");
                                 $("ul#success_message").append(`<li>${message}</li>`);
                                 $("#buttonModalVisibilities").removeClass('loading').removeAttr('disabled','disabled');
-                                $("#refreshFieldVisibility").load(location.href + " #refreshFieldVisibility");
+                                // $("#refreshFieldVisibility").load(location.href + " #refreshFieldVisibility");
+                                $(button).parents('tr').remove();
                                 alertify.success(message);
                             }
                         }
