@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\activeUserRequest;
+
 use App\Http\Requests\createGroupRequest;
+use App\Http\Requests\User\activeUserRequest;
+use App\Http\Requests\User\editUserRequest;
 use App\Models\GroupAdmin;
 use App\Models\User;
 use Exception;
@@ -13,17 +15,8 @@ class UsersController extends Controller
 {
     public function index(){
         $groups = GroupAdmin::all();
-        $users = User::all();
-        // $users = User::select(
-        //     'users.*',
-        //     'group_admins.admin as adminGroup',
-        //     'group_admins.name as nameGroup',
-        //     'group_admins.id as idGroup'
-
-        // )->join('group_admins', function($join){
-        //     $join->on('group_admins.id', '=', 'users.group_id');
-        // })->get();
-        
+        $users = User::with('group')->get();
+         
         return view ('site.users',
             [
                 'users' => $users,
@@ -31,6 +24,30 @@ class UsersController extends Controller
             ]
         );
     }
+    public function findUser($id)
+    {
+       
+        try {
+            $findUser = User::with('group')->findOrFail($id);
+            return $findUser;
+        } catch (Exception $ex) {
+            return response()->json(['message' => "{$ex->getMessage()}"], 500, [], JSON_NUMERIC_CHECK);
+        }
+
+    }
+    
+    public function editUser($id, editUserRequest $request)
+    {
+        $editUser = User::find($id);
+        $editUser->name = $request->name_user;
+        $editUser->email = $request->email_user;
+        $editUser->group_id = $request->grupo_user;
+        $editUser->ativo = $request->ativo_user == 'on' ? 'S' : '';
+        $editUser->save();
+        return response()->json(['message' => 'Usuário Editado com sucesso !'], 200, [], JSON_NUMERIC_CHECK);
+
+    }
+
     public function activeUser($id, activeUserRequest $request)
     {
         $userLoggedin = auth()->user();
@@ -44,14 +61,6 @@ class UsersController extends Controller
         $updateUser = User::where('id', '=', $id)->first();
         $updateUser->ativo = $request->ativar == null ? '' : 'S' ;
         $updateUser->save();
-        return redirect()->back();
-    }
-    
-    public function updateGroup($id, Request $request)
-    {
-        $updateGroupUSer = User::where('id', '=', $id)->first();
-        $updateGroupUSer->group_id = $request->groups;
-        $updateGroupUSer->save();
         return redirect()->back();
     }
 
