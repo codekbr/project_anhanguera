@@ -45,6 +45,9 @@ class GroupAdminController extends Controller
     {   
         try {
             $editGroup = GroupAdmin::where('id','=', $id)->first();
+            if ($editGroup->name == 'Usuário'){
+                return response()->json(['message' => 'Impossível editar o grupo padrão'], 500, [], JSON_NUMERIC_CHECK);
+            }
             $editGroup->name = $request->name_group;
             $editGroup->save();
             return response()->json(['message' => 'Grupo alterado com sucesso !'], 200, [], JSON_NUMERIC_CHECK);
@@ -64,6 +67,9 @@ class GroupAdminController extends Controller
     {   
         try {
             $deleteGroup = GroupAdmin::where('id','=', $id)->first();
+            if ($deleteGroup->name == 'Usuário'){
+                return response()->json(['message' => 'padrão'], 200, [], JSON_NUMERIC_CHECK);
+            }
             $userGroup = User::where('users.group_id', '=', $id)->first();
             if ($userGroup){
                 return response()->json(['message' => 'true'], 200, [], JSON_NUMERIC_CHECK);

@@ -8,6 +8,7 @@ use App\Http\Requests\User\activeUserRequest;
 use App\Http\Requests\User\editUserRequest;
 use App\Models\GroupAdmin;
 use App\Models\User;
+use App\Models\Visibility;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -15,12 +16,14 @@ class UsersController extends Controller
 {
     public function index(){
         $groups = GroupAdmin::all();
+        $visibilities = Visibility::all();
         $users = User::with('group')->get();
          
         return view ('site.users',
             [
                 'users' => $users,
-                'groups' => $groups
+                'groups' => $groups,
+                'visibilities' => $visibilities
             ]
         );
     }
@@ -42,7 +45,9 @@ class UsersController extends Controller
         $editUser->name = $request->name_user;
         $editUser->email = $request->email_user;
         $editUser->group_id = $request->grupo_user;
-        $editUser->ativo = $request->ativo_user == 'on' ? 'S' : '';
+        if ($request->ativo_user == 'on' || $request->ativo_user == 'S'){
+            $editUser->ativo = 'S';
+        }
         $editUser->save();
         return response()->json(['message' => 'Usuário Editado com sucesso !'], 200, [], JSON_NUMERIC_CHECK);
 
