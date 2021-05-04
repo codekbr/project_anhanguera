@@ -28,6 +28,8 @@ class UsersController extends Controller
             ]
         );
     }
+
+    
     public function findUser($id)
     {
         try {

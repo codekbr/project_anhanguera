@@ -31,7 +31,7 @@
     <div id="app">
 
         @auth
-        <div class="ui pointing menu right">
+        <div class="ui pointing menu  fixed">
             <a href="{{route('home.index')}}" class="item popup" data-content="">
                 <img src="https://pbs.twimg.com/profile_images/1248592527705305088/R-_o1_GO.jpg" alt="" class="img-fluid" style="width:50px;">
             </a>
@@ -42,6 +42,7 @@
                     <a href="{{route('users.index')}}" class="item popup usuarios"><i class="icon key large" data-content="Usuários"></i></a>
                 @endif
                 <a href="{{route('friends.index')}}" class="item popup amigos"><i class="icon users large" data-content="Amigos"></i></a>
+                <a href="{{route('user.profile')}}" class="item popup profile"><i class="icon user large" data-content="Seu Perfil"></i></a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
@@ -110,7 +111,7 @@
             </div>
         </nav> --}}
         
-            <main>
+            <main style="margin-top:100px;">
                 @yield('content')
             </main>  
          
@@ -146,6 +147,11 @@
             .popup({
                 position : 'top center',
                 content  : 'Amigos'
+            })
+            $('.profile')
+            .popup({
+                position : 'top center',
+                content  : 'Seu Profile'
             })
             $('.sair')
             .popup({
