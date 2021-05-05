@@ -10,7 +10,9 @@
                 <a class="item" data-tab="second">Amigos</a>
             </div>
             <div class="ui bottom attached active tab segment" data-tab="first">
-                Usuários
+                <br>
+                <img class="ui middle aligned circular tiny image" src="https://img.ibxk.com.br/2020/03/16/16212433807451.jpeg?w=328">
+                <span>Marcos Vinicius</span>
             </div>
             <div class="ui bottom attached tab segment" data-tab="second">
                 Amigos

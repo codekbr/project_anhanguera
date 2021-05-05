@@ -36,7 +36,7 @@
             <div class="right menu">
                 <a href="{{route('home.index')}}" class="item popup homeuser"><i class="icon home large" ></i></a>
                 <a href="{{route('users.index')}}" class="item popup usuarios"><i class="icon key large" data-content="Usuários"></i></a>
-                <a href="{{route('friends.index')}}" class="item popup amigos"><i class="icon users large" data-content="Amigos"></i></a>
+                <a href="{{route('friends.index')}}" class="item popup amigos"><i class="icon user plus large" data-content="Amigos"></i></a>
                 <a href="{{route('groups.index')}}" class="item popup grupos"><i class="icon group large" data-content="Grupos"></i></a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
