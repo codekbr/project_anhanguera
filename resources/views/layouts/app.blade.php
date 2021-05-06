@@ -15,12 +15,15 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/global.css')}}">
     <link rel="stylesheet" href="{{asset('semantic-ui/semantic.min.css')}}">
+    <link rel="stylesheet" href="{{asset('alertify/css/alertify.min.css')}}">
+    <link rel="stylesheet" href="{{asset('alertify/css/themes/semantic.min.css')}}">
     {{-- <link rel="stylesheet" href="{{asset('DataTable/datatables.min.css')}}"> --}}
+  
     @stack('styles')
     <style></style>
 </head>
@@ -28,16 +31,18 @@
     <div id="app">
 
         @auth
-        <div class="ui pointing menu right">
+        <div class="ui pointing menu  fixed">
             <a href="{{route('home.index')}}" class="item popup" data-content="">
                 <img src="https://pbs.twimg.com/profile_images/1248592527705305088/R-_o1_GO.jpg" alt="" class="img-fluid" style="width:50px;">
             </a>
         
             <div class="right menu">
                 <a href="{{route('home.index')}}" class="item popup homeuser"><i class="icon home large" ></i></a>
-                <a href="{{route('users.index')}}" class="item popup usuarios"><i class="icon key large" data-content="Usuários"></i></a>
-                <a href="{{route('friends.index')}}" class="item popup amigos"><i class="icon user plus large" data-content="Amigos"></i></a>
-                <a href="{{route('groups.index')}}" class="item popup grupos"><i class="icon group large" data-content="Grupos"></i></a>
+                @if (Auth::user()->group->admin == 1) 
+                    <a href="{{route('users.index')}}" class="item popup usuarios"><i class="icon key large" data-content="Usuários"></i></a>
+                @endif
+                <a href="{{route('friends.index')}}" class="item popup amigos"><i class="icon users large" data-content="Amigos"></i></a>
+                <a href="{{route('user.profile')}}" class="item popup profile"><i class="icon user large" data-content="Seu Perfil"></i></a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
@@ -106,7 +111,7 @@
             </div>
         </nav> --}}
         
-            <main>
+            <main style="margin-top:100px;">
                 @yield('content')
             </main>  
          
@@ -115,10 +120,15 @@
   
     <script src="{{asset('js/app.js')}}" ></script>
     <script src="{{asset('semantic-ui/semantic.min.js')}}" defer></script>
+    <script src="{{asset('js/global.js')}}"></script>
+    <script src="{{asset('alertify/alertify.min.js')}}"></script>
     {{-- <script src="{{asset('DataTable/datatables.min.js')}}"></script> --}}
     
+    
     <script>
-        
+        alertify.defaults.transition = "zoom";
+        alertify.defaults.theme.ok = "ui positive button";
+        alertify.defaults.theme.cancel = "ui black button";
         $( document ).ready(function() {
             // $(".").popup({
             //     position : 'top center',
@@ -138,10 +148,10 @@
                 position : 'top center',
                 content  : 'Amigos'
             })
-            $('.grupos')
+            $('.profile')
             .popup({
                 position : 'top center',
-                content  : 'Grupos'
+                content  : 'Seu Profile'
             })
             $('.sair')
             .popup({

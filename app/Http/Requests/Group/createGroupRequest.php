@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Group;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -16,6 +16,21 @@ class createGroupRequest extends FormRequest
         return true;
     }
 
+    public function attributes()
+    {
+        return [
+            'name_group' => 'Nome'
+        ];
+      
+    }
+
+    public function messages()
+    {
+        return [
+            'name_group' => 'Nome'
+        ];
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,7 +39,7 @@ class createGroupRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name_group' => 'required'
         ];
     }
 }
