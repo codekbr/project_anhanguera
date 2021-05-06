@@ -15,7 +15,7 @@
                 <span>Marcos Vinicius</span> 
             </div>
             <div class="ui bottom attached tab segment" data-tab="second">
-                Amigos
+                Amigos teste
             </div>
         </div>
         
