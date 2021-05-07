@@ -11,11 +11,55 @@
             </div>
             <div class="ui bottom attached active tab segment" data-tab="first">
                 <br>
-                <img class="ui middle aligned circular tiny image" src="https://img.ibxk.com.br/2020/03/16/16212433807451.jpeg?w=328">
-                <span>Marcos Vinicius</span> 
+
+                <div class="ui segment secondary form">
+                    <div class="ui fields">
+                        <div class="sixteen wide field">
+                            <div>
+                                <img class="ui middle aligned circular tiny image" src="{{asset('img/juci6.jpg')}}" >
+                                <span>Marcos Vinicius</span> 
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <div class="ui segment secondary form">
+                    <div class="ui fields">
+                        <div class="sixteen wide field">
+                           <div>
+                                <img class="ui middle aligned circular tiny image" src="{{asset('img/anime.jpeg')}}" >
+                                <span>Juciele</span>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+              
+                <div class="ui fields">
+                    <div class="sixteen wide field">
+                        <div>
+                            <img class="ui middle aligned circular tiny image" src="{{asset('img/anime.jpeg')}}" >
+                            <span>Juciele</span>
+                        </div>
+                    </div> 
+                </div>
+                <div class="ui fields">
+                    <div class="sixteen wide field">
+                        <div>
+                            <img class="ui middle aligned circular tiny image" src="{{asset('img/anime.jpeg')}}" >
+                            <span>Juciele</span>
+                        </div>
+                    </div> 
+                </div>
+                <div class="ui fields">
+                    <div class="sixteen wide field">
+                        <div>
+                            <img class="ui middle aligned circular tiny image" src="{{asset('img/anime.jpeg')}}" >
+                            <span>Juciele</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="ui bottom attached tab segment" data-tab="second">
-                Amigos teste
+                Amigos 
             </div>
         </div>
         
