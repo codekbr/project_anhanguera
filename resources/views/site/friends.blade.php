@@ -16,14 +16,14 @@
             <div class="ui bottom attached active tab segment" data-tab="first">
                 <br>
                 <div class="ui segment">
-                    <div class="ui two column very relaxed grid">
+                    <div class="ui two column very relaxed grid ">
                       <div class="column">
                         <div class="ui segment secondary form">
                             <div class="ui fields">
                                 <div class="sixteen wide field">
                                     <div>
-                                        <img class="ui middle aligned circular tiny image" src="{{asset('img/juci6.jpg')}}" >
-                                        <div class="ui compact menu">
+                                      <img class="ui middle aligned circular tiny image" style="height:80px;width:80px" x="0" y="0" height="100%" preserveAspectRatio="xMidYMid slice" width="100%" src="{{asset('img/anime.jpg')}}">
+                                        <div class="ui compact menu ">
                                             <a class="item">
                                               <i class="icon user"></i> Amigos
                                               <div class="floating ui red label">22</div>
@@ -35,7 +35,7 @@
                                             <a class="item">
                                                 <i class="user plus icon"></i> Adicionar
                                             </a>
-                                          </div>
+                                        </div>
                                     </div>
                                 </div> 
                             </div>
@@ -45,7 +45,7 @@
                         <div class="ui segment secondary form">
                             <div class="ui fields">
                                 <div class="sixteen wide field">
-                                    <img class="ui middle aligned circular tiny image" src="{{asset('img/juci1.jpg')}}" >
+                                  <img class="ui middle aligned circular tiny image" style="height:80px;width:80px" x="0" y="0" height="100%" preserveAspectRatio="xMidYMid slice" width="100%" src="{{asset('img/juci2.jpg')}}">
                                     <div class="ui compact menu">
                                         <a class="item">
                                           <i class="icon user"></i> Amigos
@@ -62,8 +62,8 @@
                                 </div> 
                             </div>
                         </div>
-                    </div>
                       </div>
+                    </div>
                     </div>
                   </div>
             <div class="ui bottom attached tab segment" data-tab="second">
